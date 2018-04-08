@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-       hello
-    </title>
-</head>
-<body>
-<h1>Hello index</h1>
-</body>
+<h1>Articles</h1>
+<?= $this->Html->link('Add Article', ['action' => 'add']) ?>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Created</th>
+    </tr>
+
+    <!-- Here is where we iterate through our $articles query object, printing out article info -->
+
+    <?php foreach ($articles as $article): ?>
+    <tr>
+        <td>
+            <?= $this->Html->link($article->title, ['action' => 'view', $article->slug]) ?>
+        </td>
+        <td>
+            <?= $article->created->format(DATE_RFC850) ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
